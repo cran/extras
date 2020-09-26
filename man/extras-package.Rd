@@ -14,7 +14,7 @@ Functions to 'numericise' 'R' objects (coerce to numeric objects)
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://poissonconsulting.github.io/extras}
+  \item \url{https://poissonconsulting.github.io/extras/}
   \item \url{https://github.com/poissonconsulting/extras}
   \item Report bugs at \url{https://github.com/poissonconsulting/extras/issues}
 }
@@ -25,6 +25,7 @@ Useful links:
 
 Other contributors:
 \itemize{
+  \item Kirill Müller (\href{https://orcid.org/0000-0002-1416-3412}{ORCID}) [contributor]
   \item Poisson Consulting [copyright holder, funder]
 }
 
