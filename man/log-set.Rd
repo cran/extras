@@ -27,7 +27,9 @@ x
 }
 \seealso{
 Other translations: 
+\code{\link{fabs}()},
 \code{\link{ilogit}()},
+\code{\link{invlogit}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},
 \code{\link{phi}()},

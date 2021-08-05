@@ -4,10 +4,12 @@
 \alias{zscore}
 \title{Z-Score}
 \usage{
-zscore(x)
+zscore(x, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
+
+\item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
 A number.
@@ -21,9 +23,16 @@ zscore(as.numeric(0:100))
 }
 \seealso{
 Other summary: 
+\code{\link{kurtosis}()},
 \code{\link{lower}()},
 \code{\link{pvalue}()},
+\code{\link{skewness}()},
 \code{\link{svalue}()},
-\code{\link{upper}()}
+\code{\link{upper}()},
+\code{\link{variance}()},
+\code{\link{xtr_mean}()},
+\code{\link{xtr_median}()},
+\code{\link{xtr_sd}()},
+\code{\link{zeros}()}
 }
 \concept{summary}

@@ -4,13 +4,15 @@
 \alias{lower}
 \title{Lower Credible Limit}
 \usage{
-lower(x, conf_level = 0.95)
+lower(x, conf_level = 0.95, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric vector of MCMC values.}
 
 \item{conf_level}{A numeric scalar between 0 and 1
 specifying the confidence level.}
+
+\item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
 A number.
@@ -27,9 +29,16 @@ lower(as.numeric(0:100))
 }
 \seealso{
 Other summary: 
+\code{\link{kurtosis}()},
 \code{\link{pvalue}()},
+\code{\link{skewness}()},
 \code{\link{svalue}()},
 \code{\link{upper}()},
+\code{\link{variance}()},
+\code{\link{xtr_mean}()},
+\code{\link{xtr_median}()},
+\code{\link{xtr_sd}()},
+\code{\link{zeros}()},
 \code{\link{zscore}()}
 }
 \concept{summary}

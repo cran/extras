@@ -10,13 +10,45 @@
 
 \item{nas}{A flag specifying whether to also fill missing values.}
 
+\item{n}{A non-negative whole number of the number of random samples to generate.}
+
 \item{conf_level}{A numeric scalar between 0 and 1
 specifying the confidence level.}
 
 \item{value}{A scalar of the value to replace values with.}
 
-\item{directional}{A flag indicating whether probabilities less than 0.5
+\item{directional}{A flag specifying whether probabilities less than 0.5
 should be returned as negative values.}
+
+\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+
+\item{mean}{A numeric vector of the means.}
+
+\item{sd}{A non-negative numeric vector of the standard deviations.}
+
+\item{meanlog}{A numeric vector of the means on the log scale.}
+
+\item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
+
+\item{size}{A non-negative whole numeric vector of the number of trials.}
+
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+
+\item{lambda}{A non-negative numeric vector of means.}
+
+\item{theta}{A non-negative numeric vector of the shape and rate.}
+
+\item{shape}{A non-negative numeric vector of shape.}
+
+\item{rate}{A non-negative numeric vector of rate.}
+
+\item{type}{A string of the residual type ('raw' or 'dev').}
+
+\item{na_rm}{A flag specifying whether to remove missing values.}
+
+\item{threshold}{A number of the threshold value.}
+
+\item{simulate}{A flag specifying whether to simulate residuals.}
 }
 \description{
 Parameter Descriptions

@@ -4,10 +4,14 @@
 \alias{svalue}
 \title{Surprisal Value}
 \usage{
-svalue(x)
+svalue(x, threshold = 0, na_rm = FALSE)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
+
+\item{threshold}{A number of the threshold value.}
+
+\item{na_rm}{A flag specifying whether to remove missing values.}
 }
 \value{
 A non-negative number.
@@ -24,13 +28,20 @@ svalue(as.numeric(0:100))
 Greenland, S. 2019. Valid P -Values Behave Exactly as They Should:
 Some Misleading Criticisms of P -Values and Their Resolution With S -Values.
 The American Statistician 73(sup1): 106–114.
-\url{https://doi.org/10.1080/00031305.2018.1529625}.
+\doi{10.1080/00031305.2018.1529625}.
 }
 \seealso{
 Other summary: 
+\code{\link{kurtosis}()},
 \code{\link{lower}()},
 \code{\link{pvalue}()},
+\code{\link{skewness}()},
 \code{\link{upper}()},
+\code{\link{variance}()},
+\code{\link{xtr_mean}()},
+\code{\link{xtr_median}()},
+\code{\link{xtr_sd}()},
+\code{\link{zeros}()},
 \code{\link{zscore}()}
 }
 \concept{summary}

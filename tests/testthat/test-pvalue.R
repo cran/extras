@@ -16,4 +16,8 @@ test_that("pvalue", {
   expect_equal(pvalue(c(rep(-1, 25), rep(1, 1000 - 25))), 51 / 1001)
   expect_equal(pvalue(c(rep(-1, 24), rep(1, 1000 - 24))), 49 / 1001)
   expect_equal(pvalue(c(rep(-1, 25), rep(0, 1000 - 25))), 976 / 1001)
+  expect_equal(pvalue(-9:10), 0.952380952380952)
+  expect_equal(pvalue(-9:10 + 1, threshold = 1), 0.952380952380952)
+  expect_equal(pvalue(c(-1, 1, 1, 1, NA)), NA_real_)
+  expect_equal(pvalue(c(-1, 1, 1, 1, NA), na_rm = TRUE), 3/5)
 })

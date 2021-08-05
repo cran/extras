@@ -25,7 +25,9 @@ pow(10, 2)
 }
 \seealso{
 Other translations: 
+\code{\link{fabs}()},
 \code{\link{ilogit}()},
+\code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},

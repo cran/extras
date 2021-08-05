@@ -9,7 +9,7 @@ sextreme(x, directional = FALSE)
 \arguments{
 \item{x}{A numeric vector of values between 0 and 1.}
 
-\item{directional}{A flag indicating whether probabilities less than 0.5
+\item{directional}{A flag specifying whether probabilities less than 0.5
 should be returned as negative values.}
 }
 \value{
@@ -18,10 +18,7 @@ A numeric vector of surprisal values.
 \description{
 Calculates the surprisal (in bits) that a cumulative distribution function
 probability is at least that extreme.
-}
-\details{
-Useful for treating the cdf probabilities as residuals
-particularly when directional = TRUE.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 }
 \examples{
 sextreme(seq(0.1, 0.9, by = 0.1))
