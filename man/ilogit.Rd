@@ -24,11 +24,14 @@ ilogit(c(-1, 0, 5))
 \seealso{
 Other translations: 
 \code{\link{fabs}()},
+\code{\link{ilog}()},
+\code{\link{inv_logit}()},
 \code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},
 \code{\link{phi}()},
-\code{\link{pow}()}
+\code{\link{pow}()},
+\code{\link{step}()}
 }
 \concept{translations}

@@ -13,7 +13,7 @@ res_binom(x, size = 1, prob = 0.5, type = "dev", simulate = FALSE)
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
 
-\item{type}{A string of the residual type ('raw' or 'dev').}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }
@@ -33,6 +33,7 @@ Other res_dist:
 \code{\link{res_lnorm}()},
 \code{\link{res_neg_binom}()},
 \code{\link{res_norm}()},
+\code{\link{res_pois_zi}()},
 \code{\link{res_pois}()}
 }
 \concept{res_dist}

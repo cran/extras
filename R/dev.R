@@ -28,6 +28,37 @@ dev_pois <- function(x, lambda, res = FALSE) {
   impl_dev(x, lambda, dev)
 }
 
+#' Zero-Inflated Poisson Deviances
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding deviances or deviance residuals.
+#' @family dev_dist
+#' @export
+#'
+#' @examples
+#' dev_pois(c(1,3.5,4), 3)
+dev_pois_zi <- function(x, lambda, prob = 0, res = FALSE) {
+  dev <- dev_pois(x, lambda, res = FALSE)
+  dev <- dev / 2
+  probnot0 <- !is.na(x) & x == 0 & !is.na(prob) & prob != 0
+  if(any(probnot0)) {
+    if(length(prob) == 1) {
+      prob <- rep(prob, length(x))
+    }
+    prob1 <- probnot0 & prob == 1
+    dev[prob1] <- 0
+    probnot01 <- probnot0 & prob != 1
+    dev[probnot01] <- -log(exp(-dev[probnot01]) * (1 - prob[probnot01]) + prob[probnot01])
+  }
+
+  is.na(dev) <- is.na(prob)
+  dev <- dev * 2
+  if(vld_false(res)) return(dev)
+  impl_dev(x, lambda * (1 - prob), dev)
+}
+
 #' Normal Deviances
 #'
 #' @inheritParams params
@@ -41,7 +72,6 @@ dev_pois <- function(x, lambda, res = FALSE) {
 #' dev_norm(c(-2:2))
 dev_norm <- function(x, mean = 0, sd = 1, res = FALSE) {
   dev <- (x - mean)^2/sd^2
-  dev <- dev * 2
   if(vld_false(res)) return(dev)
   impl_dev(x, mean, dev)
 }

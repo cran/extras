@@ -27,10 +27,13 @@ pow(10, 2)
 Other translations: 
 \code{\link{fabs}()},
 \code{\link{ilogit}()},
+\code{\link{ilog}()},
+\code{\link{inv_logit}()},
 \code{\link{invlogit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},
-\code{\link{phi}()}
+\code{\link{phi}()},
+\code{\link{step}()}
 }
 \concept{translations}

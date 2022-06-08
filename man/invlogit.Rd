@@ -25,10 +25,13 @@ invlogit(c(-1, 0, 5))
 Other translations: 
 \code{\link{fabs}()},
 \code{\link{ilogit}()},
+\code{\link{ilog}()},
+\code{\link{inv_logit}()},
 \code{\link{log<-}()},
 \code{\link{logit<-}()},
 \code{\link{logit}()},
 \code{\link{phi}()},
-\code{\link{pow}()}
+\code{\link{pow}()},
+\code{\link{step}()}
 }
 \concept{translations}

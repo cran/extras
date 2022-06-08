@@ -1,5 +1,27 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# extras 0.3.0
+
+## Added
+
+- Added the following functions
+- `step()` R version of JAGS function.
+- `ilog()`.
+- `inv_logit()`.
+- `inv_odds()` and `odds()<-`.
+- `odds_ratio2()` and `log_odds_ratio2()`.
+- `proportional_change()`, `proportional_difference()`.
+- `ran_pois_zi()`, `log_lik_pois_zi()`, `res_pois_zi()` and `dev_pois_zi()`.
+- `pzeros()` to calculate proportion of zeros in a numeric object.
+
+## Modifications
+
+- `res_xx()` functions now return data (actual or simulated) if `type = 'data'`.
+
+## Bug Fixes
+
+- Fixed normal and log-normal deviances which were out by a factor of 2 and 1.41 respectively.
+
 # extras 0.2.0
 
 ## Added 
