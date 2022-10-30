@@ -19,14 +19,26 @@ test_that("res_pois", {
   expect_equal(res_pois(1:2, 2, simulate = TRUE, type = "data"), c(1L, 0L))
 })
 
+test_that("res_pois simulate", {
+  set.seed(101)
+  res <- res_pois(rep(2,10000), lambda = 10, simulate = TRUE, type = "dev")
+  expect_equal(mean(res), -0.0747938731623342)
+  expect_equal(sd(res), 1.00265783064155)
+})
+
 test_that("res_pois_zi", {
   expect_identical(res_pois_zi(integer(0), integer(0)), numeric(0))
   expect_identical(res_pois_zi(1, 1), 0)
+  expect_identical(res_pois_zi(1, 1, type = "raw"), 0)
+  expect_equal(res_pois_zi(1, 1, 0.5), 1.17741002251547)
+  expect_identical(res_pois_zi(1, 1, 0.5, type = "raw"), 0.5)
+  expect_identical(res_pois_zi(1, lambda = 1, prob = 1), Inf)
+  expect_identical(res_pois_zi(1, lambda = 1, prob = 1, type = "raw"), 1)
   expect_equal(res_pois_zi(0, 1), -1.4142135623731)
   expect_identical(res_pois_zi(NA, 1), NA_real_)
   expect_identical(res_pois_zi(1, NA), NA_real_)
   expect_error(res_pois_zi(1, 3, type = "unknown"))
-  expect_equal(res_pois_zi(1, 3, type = "raw"), -2)
+  expect_identical(res_pois_zi(1, 3, type = "raw"), -2)
   expect_equal(res_pois_zi(1, 3), dev_pois(1, 3, res = TRUE))
   expect_equal(res_pois_zi(c(1,3.5,4), 3, type = "raw"),
                c(-2, 0.5, 1))
@@ -41,6 +53,13 @@ test_that("res_pois_zi", {
   set.seed(101)
   expect_equal(res_pois_zi(1:10, 10, 0.5, simulate = TRUE, type = "data"),
                c(0L, 11L, 7L, 8L, 0L, 0L, 0L, 10L, 0L, 0L))
+})
+
+test_that("res_pois_zi simulate", {
+  set.seed(101)
+  res <- res_pois_zi(rep(2,10000), lambda = 100, prob = 0.01, simulate = TRUE, type = "dev")
+  expect_equal(mean(res), -0.0391353490642631)
+  expect_equal(sd(res), 1.04793224317444)
 })
 
 test_that("res_norm", {
@@ -63,6 +82,13 @@ test_that("res_norm", {
   expect_equal(res_norm(1:2, 2, type = "data"), 1:2)
   set.seed(101)
   expect_equal(res_norm(1:2, 2, simulate = TRUE, type = "data"), c(1.67396350948461, 2.55246185541914))
+})
+
+test_that("res_norm simulate", {
+  set.seed(101)
+  res <- res_norm(rep(2,10000), simulate = TRUE, type = "dev")
+  expect_equal(mean(res), 0.00527789283092907)
+  expect_equal(sd(res), 0.993174129657874)
 })
 
 test_that("res_lnorm", {
@@ -101,10 +127,10 @@ test_that("res_binom", {
   expect_equal(res_binom(1, 1, 0.7), 0.844600430900592)
   expect_identical(res_binom(1, 2, 0.5), 0)
   expect_identical(res_binom(5, 10, 0.5), 0)
-  expect_equal(res_binom(1, 10, 0.5), -3.25271578350125)
+  expect_equal(res_binom(1, 10, 0.5), -2.71316865369073)
   expect_equal(res_binom(1:9, 10, 0.5),
-               c(-3.25271578350125, -2.74227242773795, -2.17039427586256, -1.47914119729235,
-                 0, 1.47914119729235, 2.17039427586256, 2.74227242773795, 3.25271578350125
+               c(-2.71316865369073, -1.96338868806845, -1.28283185573988, -0.634594572159089,
+                 0, 0.634594572159089, 1.28283185573988, 1.96338868806845, 2.71316865369073
                ))
   expect_equal(res_binom(0, 2, 0.5, type = "raw"), -1)
   set.seed(101)
@@ -115,6 +141,13 @@ test_that("res_binom", {
   expect_equal(res_binom(1:2, 2, type = "data"), 1:2)
   set.seed(101)
   expect_equal(res_binom(1:2, 2, simulate = TRUE, type = "data"), 1:0)
+})
+
+test_that("res_binom simulate", {
+  set.seed(101)
+  res <- res_binom(rep(2,10000), size = 10, simulate = TRUE, type = "dev")
+  expect_equal(mean(res), 0.00262573802624805)
+  expect_equal(sd(res), 1.02781369459726)
 })
 
 test_that("res_bern", {
@@ -146,6 +179,13 @@ test_that("res_bern", {
   expect_equal(res_bern(0:1, simulate = TRUE, type = "data"), c(0L, 0L))
 })
 
+test_that("res_bern simulate", {
+  set.seed(101)
+  res <- res_bern(rep(2,10000), simulate = TRUE, type = "dev")
+  expect_equal(mean(res), -0.00659349612608666)
+  expect_equal(sd(res), 1.17745043457519)
+})
+
 test_that("res_gamma_pois", {
   expect_identical(res_gamma_pois(integer(0), integer(0), integer(0)), numeric(0))
   expect_identical(res_gamma_pois(1, 1, 0), 0)
@@ -167,6 +207,13 @@ test_that("res_gamma_pois", {
   expect_equal(res_gamma_pois(1:2, 2, type = "data"), 1:2)
   set.seed(101)
   expect_equal(res_gamma_pois(1:2, 2, simulate = TRUE, type = "data"), 2:1)
+})
+
+test_that("res_gamma_pois simulate", {
+  set.seed(101)
+  res <- res_gamma_pois(rep(2,10000), lambda = 100, theta = 0.5, simulate = TRUE, type = "dev")
+  expect_equal(mean(res),-0.250801462240149)
+  expect_equal(sd(res), 1.01494516351537)
 })
 
 test_that("res_neg_binom", {
@@ -191,3 +238,47 @@ test_that("res_neg_binom", {
   set.seed(101)
   expect_equal(res_neg_binom(1:2, 2, simulate = TRUE, type = "data"), 2:1)
 })
+
+test_that("res_gamma_pois_zi", {
+  expect_identical(res_gamma_pois_zi(integer(0), integer(0), integer(0)), numeric(0), numeric(0))
+  expect_identical(res_gamma_pois_zi(1, 1, 0, 0), 0)
+  expect_identical(res_gamma_pois_zi(1, 1, 0, 0, type = "raw"), 0)
+  expect_equal(res_gamma_pois_zi(1, 1, 0, 0.5), 1.17741002251547)
+  expect_equal(res_gamma_pois_zi(1, 1, 0, 0.5, type = "raw"), 0.5)
+  expect_identical(res_gamma_pois_zi(1, 1, 0, 1), Inf)
+  expect_equal(res_gamma_pois_zi(1, 1, 0, 1, type = "raw"), 1)
+  expect_equal(res_gamma_pois_zi(0, 1, 0), -1.4142135623731)
+  expect_equal(res_gamma_pois_zi(0, 1, 0, type = "raw"), -1)
+  expect_identical(res_gamma_pois_zi(1, 1, 1), 0)
+  expect_identical(res_gamma_pois_zi(1, 1, 1, type = "raw"), 0)
+  expect_identical(res_gamma_pois_zi(NA, 1, 1, 1), NA_real_)
+  expect_identical(res_gamma_pois_zi(1, NA, 1, 1), NA_real_)
+  expect_identical(res_gamma_pois_zi(1, 1, NA, 1), NA_real_)
+  expect_identical(res_gamma_pois_zi(1, 1, 1, NA), NA_real_)
+  expect_error(res_gamma_pois_zi(1, 3, 1, type = "unknown"))
+  expect_equal(res_gamma_pois_zi(1, 3, 1, type = "raw"), -2)
+  expect_equal(res_gamma_pois_zi(1, 3), dev_pois(1, 3, res = TRUE))
+  expect_equal(res_gamma_pois_zi(1, 3, 2), dev_gamma_pois(1, 3, 2, res = TRUE))
+#  expect_equal(res_gamma_pois_zi(1, 3, prob = 0.5), dev_pois_zi(1, 3, prob = 0.5, res = TRUE))
+  expect_equal(res_gamma_pois_zi(c(1,3.5,4), 3, 10, type = "raw"),
+               c(-2, 0.5, 1))
+  expect_equal(res_gamma_pois_zi(c(1,3.5,4), 3, 10, 0.5, type = "raw"),
+               c(-0.5, 2, 2.5))
+  set.seed(101)
+  expect_identical(res_gamma_pois_zi(1:2, 2, 2, simulate = TRUE, type = "raw"), c(-1, 2))
+  expect_equal(res_gamma_pois_zi(1:2, 2, 2, simulate = TRUE), c(0.699911676381084, -0.382338214383655))
+  set.seed(101)
+  expect_identical(res_gamma_pois_zi(1:2, 2, 2, 0.5, simulate = TRUE, type = "raw"), c(0, 3))
+  expect_equal(res_gamma_pois_zi(1:2, 2, 2, 0.5, simulate = TRUE), c(1.36973381204323, -0.80437196763369))
+  set.seed(101)
+  expect_identical(res_gamma_pois_zi(1:2, 2, 2, simulate = TRUE, type = "raw"), c(-1, 2))
+  expect_equal(res_gamma_pois_zi(1:2, 2, type = "data"), 1:2)
+  set.seed(101)
+  expect_identical(res_gamma_pois_zi(1:2, 2, 2, 0.5, simulate = TRUE, type = "raw"), c(0, 3))
+  expect_equal(res_gamma_pois_zi(1:2, 2, prob = 0.5, type = "data"), 1:2)
+  set.seed(101)
+  expect_equal(res_gamma_pois_zi(1:2, 2, simulate = TRUE, type = "data"), 2:1)
+  set.seed(101)
+  expect_equal(res_gamma_pois_zi(1:2, 2, prob = 0.7, simulate = TRUE, type = "data"), c(0L, 0L))
+})
+

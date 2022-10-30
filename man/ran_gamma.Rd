@@ -14,7 +14,7 @@ ran_gamma(n = 1, shape = 1, rate = 1)
 \item{rate}{A non-negative numeric vector of rate.}
 }
 \value{
-An numeric vector of the random samples.
+A numeric vector of the random samples.
 }
 \description{
 Gamma Random Samples
@@ -26,6 +26,7 @@ ran_gamma(10)
 Other ran_dist: 
 \code{\link{ran_bern}()},
 \code{\link{ran_binom}()},
+\code{\link{ran_gamma_pois_zi}()},
 \code{\link{ran_gamma_pois}()},
 \code{\link{ran_lnorm}()},
 \code{\link{ran_neg_binom}()},

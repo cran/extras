@@ -11,21 +11,22 @@ ran_gamma_pois(n = 1, lambda = 1, theta = 0)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the shape and rate.}
+\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma mixing distribution. The variance for the resultant gamma-Poisson distribution is lambda + lambda^2 * theta.}
 }
 \value{
-An numeric vector of the random samples.
+A numeric vector of the random samples.
 }
 \description{
 Gamma-Poisson Random Samples
 }
 \examples{
-ran_gamma_pois(10, 1, 1)
+ran_gamma_pois(10, theta = 1)
 }
 \seealso{
 Other ran_dist: 
 \code{\link{ran_bern}()},
 \code{\link{ran_binom}()},
+\code{\link{ran_gamma_pois_zi}()},
 \code{\link{ran_gamma}()},
 \code{\link{ran_lnorm}()},
 \code{\link{ran_neg_binom}()},

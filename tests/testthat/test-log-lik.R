@@ -1,5 +1,34 @@
+test_that("log_lik_bern", {
+  expect_identical(log_lik_bern(numeric(0)), numeric(0))
+  expect_identical(log_lik_bern(1, prob = numeric(0)), numeric(0))
+  expect_identical(log_lik_bern(NA), NA_real_)
+  expect_identical(log_lik_bern(1, NA), NA_real_)
+  expect_identical(log_lik_bern(0, 0), 0)
+  expect_identical(log_lik_bern(0L, 0), 0)
+  expect_identical(log_lik_bern(1, 1), 0)
+  expect_equal(log_lik_bern(0), -0.693147180559945)
+  expect_equal(log_lik_bern(1, 0.7), -0.356674943938732)
+})
+
+test_that("log_lik_binom", {
+  expect_identical(log_lik_binom(numeric(0)), numeric(0))
+  expect_identical(log_lik_binom(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_binom(1, prob = numeric(0)), numeric(0))
+  expect_identical(log_lik_binom(NA), NA_real_)
+  expect_identical(log_lik_binom(1, NA), NA_real_)
+  expect_identical(log_lik_binom(1, prob = NA), NA_real_)
+  expect_identical(log_lik_binom(0, 0), 0)
+  expect_identical(log_lik_binom(0L, 0), 0)
+  expect_equal(log_lik_binom(1, 1), -0.693147180559945)
+  expect_equal(log_lik_binom(0), -0.693147180559945)
+  expect_equal(log_lik_binom(1, prob = 0.7), -0.356674943938732)
+
+  expect_identical(log_lik_binom(1, 2, 0.7), dbinom(1, 2, 0.7, log = TRUE))
+})
+
+
 test_that("log_lik_pois", {
-  expect_identical(log_lik_pois(1, 2), dpois(1, 2, log = TRUE))
+  expect_equal(log_lik_pois(1, 2), -1.30685281944005)
 })
 
 test_that("log_lik_pois_zi", {
@@ -8,6 +37,11 @@ test_that("log_lik_pois_zi", {
   expect_identical(log_lik_pois_zi(0, 2, 1), 0)
   expect_identical(log_lik_pois_zi(1, 2, 1), -Inf)
   expect_equal(log_lik_pois_zi(c(0, 2), 2, 0.5), c(-0.566219169516973, -2))
+  expect_equal(log_lik_pois_zi(3, 3.5, 0), log_lik_pois(3, 3.5))
+  expect_equal(log_lik_pois_zi(3, 3.5, 0), -1.53347056374195)
+  expect_equal(log_lik_pois_zi(3, 3.5, 0.1), -1.63883107939978)
+  expect_equal(log_lik_pois_zi(3, 3.5, 0.2), -1.75661411505616)
+  expect_equal(log_lik_pois_zi(3, 3.5, 1), -Inf)
 })
 
 test_that("log_lik_norm", {
@@ -18,19 +52,37 @@ test_that("log_lik_lnorm", {
   expect_identical(log_lik_lnorm(1, 2), dlnorm(1, 2, log = TRUE))
 })
 
-test_that("log_lik_binom", {
-  expect_identical(log_lik_binom(1, 2, 0.7), dbinom(1, 2, 0.7, log = TRUE))
-})
-
-test_that("log_lik_bern", {
-  expect_identical(log_lik_bern(1, 0.7), dbinom(1, 1, 0.7, log = TRUE))
-})
-
 test_that("log_lik_neg_binom", {
   expect_identical(log_lik_neg_binom(0, 2, 1), dnbinom(0, mu = 2, size = 1, log = TRUE))
   expect_identical(log_lik_neg_binom(0, 2, 2), dnbinom(0, size = 1/2, mu = 2, log = TRUE))
 })
 
 test_that("log_lik_gamma_pois", {
-  expect_identical(log_lik_gamma_pois(0, 2, 2), dnbinom(0, mu = 2, size = 1/2, log = TRUE))
+  expect_equal(log_lik_gamma_pois(1, 2), -1.30685281944005)
+  expect_equal(log_lik_gamma_pois(1, 2, 0.5), -1.38629436111989)
+  expect_equal(log_lik_gamma_pois(0, 2, 2), -0.80471895621705)
+})
+
+test_that("gamma_pois_zi missing values", {
+  expect_identical(log_lik_gamma_pois_zi(numeric(0), numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_gamma_pois_zi(NA, 1, 1, 0.5), NA_real_)
+  expect_identical(log_lik_gamma_pois_zi(1, NA, 1, 0.5), NA_real_)
+  expect_identical(log_lik_gamma_pois_zi(1, 1, NA, 0.5), NA_real_)
+  expect_identical(log_lik_gamma_pois_zi(1, 1, 1, NA), NA_real_)
+})
+
+test_that("gamma_pois_zi known values", {
+  expect_equal(log_lik_gamma_pois_zi(0, 3), -3)
+  expect_equal(log_lik_gamma_pois_zi(0, 3, 0.5, 0.5), -0.544727175441672)
+  expect_equal(log_lik_gamma_pois_zi(1, 2), -1.30685281944005)
+  expect_equal(log_lik_gamma_pois_zi(2, 2), -1.30685281944005)
+  expect_equal(log_lik_gamma_pois_zi(1, 2, 0.5), -1.38629436111989)
+  expect_equal(log_lik_gamma_pois_zi(1, 2, 0.5, 0.5), -2.07944154167984)
+})
+
+test_that("gamma_pois_zi vectorized", {
+  expect_equal(log_lik_gamma_pois_zi(0:3, 2, 0, 0), c(-2, -1.30685281944005, -1.30685281944005, -1.71231792754822))
+  expect_equal(log_lik_gamma_pois_zi(c(0, 1, 3, 0), 3, 0.5, 0.5), c(-0.544727175441672, -2.3434070875143, -2.67191115448634, -0.544727175441672))
+  expect_equal(log_lik_gamma_pois_zi(0:3, 0:3, rep(1, 4), 0), c(0, -1.38629436111989, -1.90954250488444, -2.24934057847523))
+  expect_equal(log_lik_gamma_pois_zi(0:3, 3:0, 0:3, seq(0, 1, length.out = 4)), c(-3, -1.90954250488444, -3.43967790223022, -Inf))
 })

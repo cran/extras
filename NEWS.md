@@ -1,5 +1,18 @@
 <!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
 
+# extras 0.5.0
+
+- Added following zero-inflated gamma Poisson functions
+  - `log_lik_gamma_pois_zi()`
+  - `ran_gamma_pois_zi()`
+  - `dev_gamma_pois_zi()`
+  - `res_gamma_pois_zi()`
+Fixed bugs in 
+  - `dev_binom()`
+  - `dev_pois_zi()`
+- Set R >= 3.5
+
+
 # extras 0.4.0
 
 - Added `log_odds()` and `log_odds()<-`.

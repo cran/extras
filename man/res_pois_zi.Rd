@@ -2,7 +2,7 @@
 % Please edit documentation in R/res.R
 \name{res_pois_zi}
 \alias{res_pois_zi}
-\title{Poisson Residuals}
+\title{Zero-Inflated Poisson Residuals}
 \usage{
 res_pois_zi(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
 }
@@ -21,7 +21,7 @@ res_pois_zi(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
 An numeric vector of the corresponding residuals.
 }
 \description{
-Poisson Residuals
+Zero-Inflated Poisson Residuals
 }
 \examples{
 res_pois_zi(c(1,3.5,4), 6, 0.5, type = "raw")
@@ -30,6 +30,7 @@ res_pois_zi(c(1,3.5,4), 6, 0.5, type = "raw")
 Other res_dist: 
 \code{\link{res_bern}()},
 \code{\link{res_binom}()},
+\code{\link{res_gamma_pois_zi}()},
 \code{\link{res_gamma_pois}()},
 \code{\link{res_lnorm}()},
 \code{\link{res_neg_binom}()},

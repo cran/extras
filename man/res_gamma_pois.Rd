@@ -2,7 +2,7 @@
 % Please edit documentation in R/res.R
 \name{res_gamma_pois}
 \alias{res_gamma_pois}
-\title{Gamma Poisson Residuals}
+\title{Gamma-Poisson Residuals}
 \usage{
 res_gamma_pois(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE)
 }
@@ -11,7 +11,7 @@ res_gamma_pois(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the shape and rate.}
+\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma mixing distribution. The variance for the resultant gamma-Poisson distribution is lambda + lambda^2 * theta.}
 
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
 
@@ -21,7 +21,7 @@ res_gamma_pois(x, lambda = 1, theta = 0, type = "dev", simulate = FALSE)
 An numeric vector of the corresponding residuals.
 }
 \description{
-Gamma Poisson Residuals
+Gamma-Poisson Residuals
 }
 \examples{
 res_gamma_pois(c(0, 1, 2), 1, 1)
@@ -30,6 +30,7 @@ res_gamma_pois(c(0, 1, 2), 1, 1)
 Other res_dist: 
 \code{\link{res_bern}()},
 \code{\link{res_binom}()},
+\code{\link{res_gamma_pois_zi}()},
 \code{\link{res_lnorm}()},
 \code{\link{res_neg_binom}()},
 \code{\link{res_norm}()},

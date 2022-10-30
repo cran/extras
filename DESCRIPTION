@@ -1,6 +1,6 @@
 Package: extras
 Title: Helper Functions for Bayesian Analyses
-Version: 0.4.0
+Version: 0.5.0
 Authors@R: c(
     person("Joe", "Thorley", , "joe@poissonconsulting.ca", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-7683-4592")),
@@ -19,19 +19,21 @@ License: MIT + file LICENSE
 URL: https://poissonconsulting.github.io/extras/,
         https://github.com/poissonconsulting/extras
 BugReports: https://github.com/poissonconsulting/extras/issues
-Depends: R (>= 3.4)
+Depends: R (>= 3.5)
 Imports: chk, lifecycle, stats
-Suggests: covr, hms, knitr, rlang, testthat (>= 3.0.0), tibble
+Suggests: covr, hms, knitr, MASS, rlang, rmarkdown, testthat (>=
+        3.0.0), tibble
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.1
+VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2022-09-23 23:37:07 UTC; joe
+Packaged: 2022-10-30 01:52:50 UTC; joe
 Author: Joe Thorley [aut, cre] (<https://orcid.org/0000-0002-7683-4592>),
   Kirill Müller [ctb] (<https://orcid.org/0000-0002-1416-3412>),
   Nadine Hussein [ctb] (<https://orcid.org/0000-0003-4470-8361>),
   Poisson Consulting [cph, fnd]
 Maintainer: Joe Thorley <joe@poissonconsulting.ca>
 Repository: CRAN
-Date/Publication: 2022-09-24 00:00:02 UTC
+Date/Publication: 2022-10-30 04:20:02 UTC

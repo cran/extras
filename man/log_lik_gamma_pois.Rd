@@ -2,22 +2,22 @@
 % Please edit documentation in R/log-lik.R
 \name{log_lik_gamma_pois}
 \alias{log_lik_gamma_pois}
-\title{Gamma Poisson Log-Likelihood}
+\title{Gamma-Poisson Log-Likelihood}
 \usage{
 log_lik_gamma_pois(x, lambda = 1, theta = 0)
 }
 \arguments{
-\item{x}{A vector of 0s and 1s.}
+\item{x}{A non-negative whole numeric vector of values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the shape and rate.}
+\item{theta}{A non-negative numeric vector of the dispersion parameters for the gamma mixing distribution. The variance for the resultant gamma-Poisson distribution is lambda + lambda^2 * theta.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
 }
 \description{
-Gamma Poisson Log-Likelihood
+Gamma-Poisson Log-Likelihood
 }
 \examples{
 log_lik_gamma_pois(c(0, 1, 2), 1, 1)
@@ -26,6 +26,7 @@ log_lik_gamma_pois(c(0, 1, 2), 1, 1)
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
 \code{\link{log_lik_binom}()},
+\code{\link{log_lik_gamma_pois_zi}()},
 \code{\link{log_lik_lnorm}()},
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
