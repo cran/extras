@@ -1,4 +1,26 @@
-<!-- NEWS.md is maintained by https://cynkra.github.io/fledge, do not edit -->
+<!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
+
+# extras 0.6.0
+
+## New Features
+
+- Added family of functions for the following distributions
+
+  - `xx_gamma()`
+  - `xx_student()`
+  - `xx_beta_binomial()`
+
+- Added standardized residuals to residual functions for all distributions
+
+## Bug Fixes
+
+- Exported `pbern()`, `qbern()` and `rbern()`.
+
+## Internal
+
+- Fix for dev testthat
+- Fix tests for dev waldo
+
 
 # extras 0.5.0
 

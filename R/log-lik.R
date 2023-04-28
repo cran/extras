@@ -1,3 +1,38 @@
+#' Beta-Binomial Log-Likelihood
+#'
+#' This parameterization of the beta-binomial distribution uses an expected probability parameter, `prob`, and a dispersion parameter, `theta`. The parameters of the underlying beta mixture are `alpha = (2 * prob) / theta` and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is unconventional, but has useful properties when modelling. When `theta = 0`, the beta-binomial reverts to the binomial distribution. When `theta = 1` and `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and `beta = 1`, which correspond to a uniform distribution for the beta-binomial probability parameter.
+#'
+#' @inheritParams params
+#' @param x A non-negative whole numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_beta_binom(c(0, 1, 2), 1, 0.5, 0)
+log_lik_beta_binom <- function(x, size = 1, prob = 0.5, theta = 0) {
+  lbinom <- log_lik_binom(x, size = size, prob = prob)
+  if (length(theta) == 1) {
+    theta <- rep(theta, length(lbinom))
+  }
+  alpha <- prob * 2 * (1 / theta)
+  beta <- (1 - prob) * 2 * (1 / theta)
+  lbeta_binom <- lgamma(size + 1) - lgamma(x + 1) - lgamma(size - x + 1) +
+    lgamma(x + alpha) + lgamma(size - x + beta) - lgamma(size + alpha + beta) +
+    lgamma(alpha + beta) - lgamma(alpha) - lgamma(beta)
+  bol <- !is.na(x) & !is.na(size) & !is.na(prob) & !is.na(theta)
+  lbeta_binom[bol & ((x == 0 & prob == 0) | (x == size & prob == 1))] <- 0
+  lbeta_binom[bol & x != 0 & prob == 0] <- -Inf
+  lbeta_binom[bol & x != size & prob == 1] <- -Inf
+  lbeta_binom[bol & x > size] <- -Inf
+  bol_theta <- !is.na(theta)
+  lbeta_binom[bol_theta & theta < 0] <- NaN
+  use_binom <- bol_theta & theta == 0
+  lbeta_binom[use_binom] <- lbinom[use_binom]
+  lbeta_binom
+}
+
 #' Bernoulli Log-Likelihood
 #'
 #' @inheritParams params
@@ -26,6 +61,21 @@ log_lik_bern <- function(x, prob = 0.5) {
 #' log_lik_binom(c(0, 1, 2), 2, 0.3)
 log_lik_binom <- function(x, size = 1, prob = 0.5) {
   dbinom(x, size = size, prob = prob, log = TRUE)
+}
+
+#' Gamma Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_gamma(c(0, 1, 2), 1, 2)
+log_lik_gamma <- function(x, shape = 1, rate = 1) {
+  stats::dgamma(x, shape = shape, rate = rate, log = TRUE)
 }
 
 #' Gamma-Poisson Log-Likelihood
@@ -142,4 +192,28 @@ log_lik_pois_zi <- function(x, lambda = 1, prob = 0) {
   zero <- x == 0
   lpois[zero] <- lpois[zero] + prob
   log(lpois)
+}
+
+#' Student's t Log-Likelihood
+#'
+#' @inheritParams params
+#' @param x A numeric vector of values.
+#'
+#' @return An numeric vector of the corresponding log-likelihoods.
+#' @family log_lik_dist
+#' @export
+#'
+#' @examples
+#' log_lik_student(c(1,3.5,4), mean = 1, sd = 2, theta = 1/3)
+log_lik_student <- function(x, mean = 0, sd = 1, theta = 0) {
+  df <- 1 / theta
+  lnorm <- log_lik_norm(x = x, mean = mean, sd = sd)
+  lstudent <- (lgamma((df + 1)/2) - lgamma(df/2) - 0.5 * log(pi * df) - log(sd)) -
+    ((df + 1)/2 * log(1 + (1/df) * ((x - mean)/sd)^2))
+  if (length(theta) == 1) {
+    theta <- rep(theta, length(lnorm))
+  }
+  use_norm <- (!is.na(theta) & theta == 0) | (!is.na(sd) & sd == 0)
+  lstudent[use_norm] <- lnorm[use_norm]
+  lstudent
 }
