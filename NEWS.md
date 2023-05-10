@@ -1,5 +1,9 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.6.1
+
+- Fixed M1mac test
+
 # extras 0.6.0
 
 ## New Features

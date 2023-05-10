@@ -1,7 +1,7 @@
-acca2bfdad4a05d4a0934a9734a41c9e *DESCRIPTION
+fde165ae07162235ef23adb2a3674c05 *DESCRIPTION
 5681489d856e788b5885d1042912c4f4 *LICENSE
 731be7682561c3432bfc207610f15ea2 *NAMESPACE
-be478c0db3f656104a601446fb05109a *NEWS.md
+34e627b515cac541adaa1b87bb881514 *NEWS.md
 65003c595b40a93722933d583d854d29 *R/as-list.R
 2475c6e9eef6280d031e28b7975fc01a *R/bern.R
 09a4980164ff5cd5847c461f39a10c13 *R/chk-index.R
@@ -168,7 +168,7 @@ ffdcc64c69cb3ab9c0c083e8bcc3ea15 *tests/testthat/test-as-list.R
 f14ba81eb338bbde56603d7ded6e292f *tests/testthat/test-chk-index.R
 c60d0b0bea71a0a7f368fbc538c31c08 *tests/testthat/test-chk-indices.R
 015664cbbd16e01b4e6b2f8950a4c514 *tests/testthat/test-chk-pars.R
-f49d47feb4f8b443e4b128e8820255d6 *tests/testthat/test-dev.R
+093ec711635c1a8d94393736c666be5a *tests/testthat/test-dev.R
 fdf95dcbf5b1bd5e1b605bee6410f42b *tests/testthat/test-fabs.R
 c55cfb02e786297e7a4167e774467365 *tests/testthat/test-fill-all.R
 c236e53644e7592ba71e20ca5b9dbb0d *tests/testthat/test-fill-na.R
