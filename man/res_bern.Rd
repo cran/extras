@@ -9,9 +9,11 @@ res_bern(x, prob = 0.5, type = "dev", simulate = FALSE)
 \arguments{
 \item{x}{A vector of 0s and 1s.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 
-\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }
@@ -28,14 +30,15 @@ res_bern(c(TRUE, FALSE), 0.7)
 Other res_dist: 
 \code{\link{res_beta_binom}()},
 \code{\link{res_binom}()},
-\code{\link{res_gamma_pois_zi}()},
-\code{\link{res_gamma_pois}()},
 \code{\link{res_gamma}()},
+\code{\link{res_gamma_pois}()},
+\code{\link{res_gamma_pois_zi}()},
 \code{\link{res_lnorm}()},
 \code{\link{res_neg_binom}()},
 \code{\link{res_norm}()},
-\code{\link{res_pois_zi}()},
 \code{\link{res_pois}()},
+\code{\link{res_pois_zi}()},
+\code{\link{res_skewnorm}()},
 \code{\link{res_student}()}
 }
 \concept{res_dist}

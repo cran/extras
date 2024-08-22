@@ -7,7 +7,7 @@
 log(x) <- value
 }
 \arguments{
-\item{x}{An existing R object.}
+\item{x}{An object.}
 
 \item{value}{A numeric atomic object.}
 }
@@ -27,13 +27,19 @@ x
 }
 \seealso{
 Other translations: 
+\code{\link{exp10}()},
+\code{\link{exp2}()},
 \code{\link{fabs}()},
-\code{\link{ilogit}()},
 \code{\link{ilog}()},
+\code{\link{ilog10}()},
+\code{\link{ilog2}()},
+\code{\link{ilogit}()},
 \code{\link{inv_logit}()},
 \code{\link{invlogit}()},
-\code{\link{logit<-}()},
+\code{\link{log10<-}()},
+\code{\link{log2<-}()},
 \code{\link{logit}()},
+\code{\link{logit<-}()},
 \code{\link{phi}()},
 \code{\link{pow}()},
 \code{\link{step}()}

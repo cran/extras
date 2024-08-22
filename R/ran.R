@@ -1,6 +1,14 @@
 #' Beta-Binomial Random Samples
 #'
-#' This parameterization of the beta-binomial distribution uses an expected probability parameter, `prob`, and a dispersion parameter, `theta`. The parameters of the underlying beta mixture are `alpha = (2 * prob) / theta` and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is unconventional, but has useful properties when modelling. When `theta = 0`, the beta-binomial reverts to the binomial distribution. When `theta = 1` and `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and `beta = 1`, which correspond to a uniform distribution for the beta-binomial probability parameter.
+#' This parameterization of the beta-binomial distribution uses an expected
+#' probability parameter, `prob`, and a dispersion parameter, `theta`. The
+#' parameters of the underlying beta mixture are `alpha = (2 * prob) / theta`
+#' and `beta = (2 * (1 - prob)) / theta`. This parameterization of `theta` is
+#' unconventional, but has useful properties when modelling. When `theta = 0`,
+#' the beta-binomial reverts to the binomial distribution. When `theta = 1` and
+#' `prob = 0.5`, the parameters of the beta distribution become `alpha = 1` and
+#' `beta = 1`, which correspond to a uniform distribution for the beta-binomial
+#' probability parameter.
 #'
 #' @inheritParams params
 #' @return A numeric vector of the random samples.
@@ -118,7 +126,7 @@ ran_lnorm <- function(n = 1, meanlog = 0, sdlog = 1) {
 ran_neg_binom <- function(n = 1, lambda = 1, theta = 0) {
   chk_whole_number(n)
   chk_gte(n)
-  as.integer(stats::rnbinom(n = n, mu = lambda, size = 1/theta))
+  as.integer(stats::rnbinom(n = n, mu = lambda, size = 1 / theta))
 }
 
 #' Normal Random Samples
@@ -164,6 +172,24 @@ ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
   stats::rpois(n, lambda = lambda) * ran_bern(n, prob = 1 - prob)
 }
 
+#' Skew Normal Random Samples
+#'
+#' @inheritParams params
+#' @param shape A numeric vector of shape.
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examples
+#' ran_skewnorm(10, shape = -1)
+#' ran_skewnorm(10, shape = 0)
+#' ran_skewnorm(10, shape = 1)
+ran_skewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
+  chk_whole_number(n)
+  chk_gte(n)
+  rskewnorm(n = n, mean = mean, sd = sd, shape = shape)
+}
+
 #' Student's t Random Samples
 #'
 #' @inheritParams params
@@ -172,11 +198,15 @@ ran_pois_zi <- function(n = 1, lambda = 1, prob = 0) {
 #' @export
 #'
 #' @examples
-#' ran_student(10, theta = 1/2)
+#' ran_student(10, theta = 1 / 2)
 ran_student <- function(n = 1, mean = 0, sd = 1, theta = 0) {
   chk_whole_number(n)
-  if (length(mean) > n) {mean = mean[1:n]}
-  if (length(sd) > n) {sd = sd[1:n]}
+  if (length(mean) > n) {
+    mean <- mean[1:n]
+  }
+  if (length(sd) > n) {
+    sd <- sd[1:n]
+  }
   df <- 1 / theta
   x <- stats::rt(n, df)
   r <- x * sd + mean

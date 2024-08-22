@@ -23,13 +23,19 @@ ilogit(c(-1, 0, 5))
 }
 \seealso{
 Other translations: 
+\code{\link{exp10}()},
+\code{\link{exp2}()},
 \code{\link{fabs}()},
 \code{\link{ilog}()},
+\code{\link{ilog10}()},
+\code{\link{ilog2}()},
 \code{\link{inv_logit}()},
 \code{\link{invlogit}()},
+\code{\link{log10<-}()},
+\code{\link{log2<-}()},
 \code{\link{log<-}()},
-\code{\link{logit<-}()},
 \code{\link{logit}()},
+\code{\link{logit<-}()},
 \code{\link{phi}()},
 \code{\link{pow}()},
 \code{\link{step}()}

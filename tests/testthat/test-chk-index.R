@@ -10,6 +10,21 @@ test_that("vld_index", {
 test_that("chk_index", {
   expect_null(chk_index(1L))
   expect_error(chk_index(0L),
-               "^`0L` must be greater than 0, not 0[.]$",
-               class = "chk_error")
+    "^`0L` must be greater than 0, not 0[.]$",
+    class = "chk_error"
+  )
+})
+
+test_that("chk_index errors with x = NA",{
+  expect_snapshot(
+    error = TRUE,
+    chk_index(NA)
+  )
+})
+
+test_that("chk_index errors with empty x",{
+  expect_snapshot(
+    error = TRUE,
+    chk_index(integer(0))
+  )
 })

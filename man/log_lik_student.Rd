@@ -13,7 +13,8 @@ log_lik_student(x, mean = 0, sd = 1, theta = 0)
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture
+models (student, gamma-Poisson and beta-binomial).}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
@@ -22,20 +23,21 @@ An numeric vector of the corresponding log-likelihoods.
 Student's t Log-Likelihood
 }
 \examples{
-log_lik_student(c(1,3.5,4), mean = 1, sd = 2, theta = 1/3)
+log_lik_student(c(1, 3.5, 4), mean = 1, sd = 2, theta = 1 / 3)
 }
 \seealso{
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
-\code{\link{log_lik_gamma_pois_zi}()},
-\code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_gamma}()},
+\code{\link{log_lik_gamma_pois}()},
+\code{\link{log_lik_gamma_pois_zi}()},
 \code{\link{log_lik_lnorm}()},
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
+\code{\link{log_lik_pois}()},
 \code{\link{log_lik_pois_zi}()},
-\code{\link{log_lik_pois}()}
+\code{\link{log_lik_skewnorm}()}
 }
 \concept{log_lik_dist}

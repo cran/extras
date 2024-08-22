@@ -54,7 +54,7 @@ test_that("log_lik_lnorm", {
 
 test_that("log_lik_neg_binom", {
   expect_identical(log_lik_neg_binom(0, 2, 1), dnbinom(0, mu = 2, size = 1, log = TRUE))
-  expect_identical(log_lik_neg_binom(0, 2, 2), dnbinom(0, size = 1/2, mu = 2, log = TRUE))
+  expect_identical(log_lik_neg_binom(0, 2, 2), dnbinom(0, size = 1 / 2, mu = 2, log = TRUE))
 })
 
 test_that("log_lik_gamma_pois", {
@@ -130,8 +130,8 @@ test_that("student known values", {
   expect_equal(log_lik_student(1, 2, 0.5), -2.22579135264473)
   expect_equal(log_lik_student(1, 0, 0, 0.5), -Inf)
   expect_equal(log_lik_student(1, 2, 0.5), log_lik_norm(1, 2, 0.5))
-  expect_equal(log_lik_student(1, theta = 1/2), dt(1, df = 2, log = TRUE))
-  expect_lt(log_lik_norm(5), log_lik_student(5, theta = 1/5))
+  expect_equal(log_lik_student(1, theta = 1 / 2), dt(1, df = 2, log = TRUE))
+  expect_lt(log_lik_norm(5), log_lik_student(5, theta = 1 / 5))
 })
 
 test_that("student vectorized", {
@@ -178,13 +178,76 @@ test_that("beta_binom vectorized", {
 })
 
 test_that("beta_binom log_lik", {
-  samples2 <- ran_beta_binom(100, size = 50, prob = 0.1, theta = 1)
-  data <- data.frame(samples2 = samples2,
-                     mod_prob2 = 50 - samples2)
-  mod2 <- aods3::aodml(cbind(samples2, mod_prob2)~1, data = data,
-                       family = "bb", method = "Nelder-Mead")
-  est_prob <- ilogit(mod2$b)
-  est_theta <- 2 / (1 / mod2$phi - 1)
-  expect_equal(mod2$logL, sum(log_lik_beta_binom(samples2, size = 50,
-                                                 prob = est_prob, theta = est_theta)))
+  withr::with_seed(
+    101,
+    samples <- ran_beta_binom(100, size = 50, prob = 0.1, theta = 1)
+  )
+  expect_snapshot(
+    log_lik_beta_binom(
+      x = samples,
+      size = 50,
+      prob = 0.2,
+      theta = 1.1
+    )
+  )
+})
+
+test_that("skewnorm missing values", {
+  skip_if_not_installed("sn")
+  expect_identical(log_lik_skewnorm(numeric(0), numeric(0), numeric(0), numeric(0)), numeric(0))
+  expect_identical(log_lik_skewnorm(1, numeric(0)), numeric(0))
+  expect_identical(log_lik_skewnorm(1, 1, sd = numeric(0)), numeric(0))
+  expect_identical(log_lik_skewnorm(1, 1, shape = numeric(0)), numeric(0))
+  expect_identical(log_lik_skewnorm(NA, 1, 1, 0.5), NA_real_)
+  expect_identical(log_lik_skewnorm(1, NA, 1, 0.5), NA_real_)
+  expect_identical(log_lik_skewnorm(1, 1, NA, 0.5), NA_real_)
+  expect_identical(log_lik_skewnorm(1, 1, 1, NA), NA_real_)
+})
+
+test_that("skewnorm known values", {
+  skip_if_not_installed("sn")
+  expect_equal(log_lik_skewnorm(0.5, 3), -4.04393853320467)
+  expect_equal(log_lik_skewnorm(0.5, 3, 0), -Inf)
+  expect_equal(log_lik_skewnorm(0.5, 3, 1, -4), -3.35079135264473)
+  expect_equal(log_lik_skewnorm(-100, 3, 1, -10), -5304.72579135264)
+  expect_equal(log_lik_skewnorm(-100, 3, 0.3, Inf), -Inf)
+  expect_equal(log_lik_skewnorm(100, 3, 1), -4705.4189385332)
+  expect_equal(log_lik_skewnorm(0, 0), -0.918938533204673)
+  expect_equal(log_lik_skewnorm(0, 3, 0.5, 0.5), -24.1403703935951)
+  expect_equal(log_lik_skewnorm(1, 2, 0.2, -1), -11.1163537268622)
+  expect_equal(log_lik_skewnorm(2, 2, 0.2, 10), 0.690499379229428)
+  expect_equal(log_lik_skewnorm(1, 2, 0.5, -10), -1.53264417208478)
+  expect_equal(log_lik_skewnorm(1, 2, 0.5, 0), log_lik_norm(1, 2, 0.5))
+  expect_equal(log_lik_skewnorm(1, 2, 0.2), dnorm(1, 2, 0.2, log = TRUE))
+})
+
+test_that("skewnorm vectorized", {
+  skip_if_not_installed("sn")
+  expect_equal(
+    log_lik_skewnorm(0:3, 2, 0.5, 0),
+    c(-8.22579135264473, -2.22579135264473, -0.225791352644727, -2.22579135264473)
+  )
+  expect_equal(
+    log_lik_skewnorm(0:3, 2, 0.5, 0),
+    log_lik_norm(0:3, 2, 0.5)
+  )
+  expect_equal(
+    log_lik_skewnorm(c(0, 1, 3, 4, 5), 3, 0.5, 0.5),
+    c(
+      -24.1403703935951, -11.3158285057668, -0.225791352644727,
+      -1.70539795110823, -7.55565708141375
+    )
+  )
+  expect_equal(
+    log_lik_skewnorm(0:3, 5:8, seq(0, 1, length.out = 4), -2),
+    c(NaN, -111.627179063977, -27.9453262445366, -12.7257913526447)
+  )
+  expect_equal(
+    log_lik_skewnorm(0:3, 3:0, seq(0, 1, length.out = 4), 0.5),
+    c(NaN, -6.33312346480051, -1.20232051137493, -4.79493480825696)
+  )
+  expect_equal(
+    log_lik_skewnorm(0:3, 3:0, 0.2, -1:2),
+    c(-111.116353440211, -11.8095006207706, -11.1163537268622, -111.116353440211)
+  )
 })

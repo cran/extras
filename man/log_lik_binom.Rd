@@ -11,7 +11,8 @@ log_lik_binom(x, size = 1, prob = 0.5)
 
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
@@ -26,14 +27,15 @@ log_lik_binom(c(0, 1, 2), 2, 0.3)
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
 \code{\link{log_lik_beta_binom}()},
-\code{\link{log_lik_gamma_pois_zi}()},
-\code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_gamma}()},
+\code{\link{log_lik_gamma_pois}()},
+\code{\link{log_lik_gamma_pois_zi}()},
 \code{\link{log_lik_lnorm}()},
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
-\code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_pois}()},
+\code{\link{log_lik_pois_zi}()},
+\code{\link{log_lik_skewnorm}()},
 \code{\link{log_lik_student}()}
 }
 \concept{log_lik_dist}

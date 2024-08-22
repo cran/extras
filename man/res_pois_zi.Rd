@@ -11,9 +11,10 @@ res_pois_zi(x, lambda = 1, prob = 0, type = "dev", simulate = FALSE)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of zero-inflation.}
 
-\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }
@@ -24,20 +25,21 @@ An numeric vector of the corresponding residuals.
 Zero-Inflated Poisson Residuals
 }
 \examples{
-res_pois_zi(c(1,3.5,4), 6, 0.5, type = "raw")
+res_pois_zi(c(1, 3, 4), 6, 0.5, type = "raw")
 }
 \seealso{
 Other res_dist: 
 \code{\link{res_bern}()},
 \code{\link{res_beta_binom}()},
 \code{\link{res_binom}()},
-\code{\link{res_gamma_pois_zi}()},
-\code{\link{res_gamma_pois}()},
 \code{\link{res_gamma}()},
+\code{\link{res_gamma_pois}()},
+\code{\link{res_gamma_pois_zi}()},
 \code{\link{res_lnorm}()},
 \code{\link{res_neg_binom}()},
 \code{\link{res_norm}()},
 \code{\link{res_pois}()},
+\code{\link{res_skewnorm}()},
 \code{\link{res_student}()}
 }
 \concept{res_dist}

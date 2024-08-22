@@ -11,7 +11,8 @@ log_lik_gamma_pois(x, lambda = 1, theta = 0)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{theta}{A non-negative numeric vector of the dispersion for the mixture models (student, gamma-Poisson and beta-binomial).}
+\item{theta}{A non-negative numeric vector of the dispersion for the mixture
+models (student, gamma-Poisson and beta-binomial).}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
@@ -27,13 +28,14 @@ Other log_lik_dist:
 \code{\link{log_lik_bern}()},
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
-\code{\link{log_lik_gamma_pois_zi}()},
 \code{\link{log_lik_gamma}()},
+\code{\link{log_lik_gamma_pois_zi}()},
 \code{\link{log_lik_lnorm}()},
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
-\code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_pois}()},
+\code{\link{log_lik_pois_zi}()},
+\code{\link{log_lik_skewnorm}()},
 \code{\link{log_lik_student}()}
 }
 \concept{log_lik_dist}

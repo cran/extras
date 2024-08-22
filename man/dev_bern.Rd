@@ -9,9 +9,11 @@ dev_bern(x, prob = 0.5, res = FALSE)
 \arguments{
 \item{x}{A vector of 0s and 1s.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 
-\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as
+opposed to the deviance.}
 }
 \value{
 An numeric vector of the corresponding deviances or deviance residuals.
@@ -26,13 +28,14 @@ dev_bern(c(TRUE, FALSE), 0.7)
 Other dev_dist: 
 \code{\link{dev_beta_binom}()},
 \code{\link{dev_binom}()},
-\code{\link{dev_gamma_pois}()},
 \code{\link{dev_gamma}()},
+\code{\link{dev_gamma_pois}()},
 \code{\link{dev_lnorm}()},
 \code{\link{dev_neg_binom}()},
 \code{\link{dev_norm}()},
-\code{\link{dev_pois_zi}()},
 \code{\link{dev_pois}()},
+\code{\link{dev_pois_zi}()},
+\code{\link{dev_skewnorm}()},
 \code{\link{dev_student}()}
 }
 \concept{dev_dist}

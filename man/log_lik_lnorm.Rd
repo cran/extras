@@ -11,7 +11,8 @@ log_lik_lnorm(x, meanlog = 0, sdlog = 1)
 
 \item{meanlog}{A numeric vector of the means on the log scale.}
 
-\item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
+\item{sdlog}{A non-negative numeric vector of the standard deviations on the
+log scale.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
@@ -20,20 +21,21 @@ An numeric vector of the corresponding log-likelihoods.
 Log-Normal Log-Likelihood
 }
 \examples{
-dev_norm(exp(c(-2:2)))
+log_lik_lnorm(10, 0, 2)
 }
 \seealso{
 Other log_lik_dist: 
 \code{\link{log_lik_bern}()},
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
-\code{\link{log_lik_gamma_pois_zi}()},
-\code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_gamma}()},
+\code{\link{log_lik_gamma_pois}()},
+\code{\link{log_lik_gamma_pois_zi}()},
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
-\code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_pois}()},
+\code{\link{log_lik_pois_zi}()},
+\code{\link{log_lik_skewnorm}()},
 \code{\link{log_lik_student}()}
 }
 \concept{log_lik_dist}

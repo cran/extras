@@ -9,7 +9,8 @@ log_lik_bern(x, prob = 0.5)
 \arguments{
 \item{x}{A vector of 0s and 1s.}
 
-\item{prob}{A numeric vector of values between 0 and 1 of the probability of success.}
+\item{prob}{A numeric vector of values between 0 and 1 of the probability of
+success.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
@@ -24,14 +25,15 @@ log_lik_bern(c(TRUE, FALSE), 0.7)
 Other log_lik_dist: 
 \code{\link{log_lik_beta_binom}()},
 \code{\link{log_lik_binom}()},
-\code{\link{log_lik_gamma_pois_zi}()},
-\code{\link{log_lik_gamma_pois}()},
 \code{\link{log_lik_gamma}()},
+\code{\link{log_lik_gamma_pois}()},
+\code{\link{log_lik_gamma_pois_zi}()},
 \code{\link{log_lik_lnorm}()},
 \code{\link{log_lik_neg_binom}()},
 \code{\link{log_lik_norm}()},
-\code{\link{log_lik_pois_zi}()},
 \code{\link{log_lik_pois}()},
+\code{\link{log_lik_pois_zi}()},
+\code{\link{log_lik_skewnorm}()},
 \code{\link{log_lik_student}()}
 }
 \concept{log_lik_dist}

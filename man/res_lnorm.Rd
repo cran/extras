@@ -11,9 +11,11 @@ res_lnorm(x, meanlog = 0, sdlog = 1, type = "dev", simulate = FALSE)
 
 \item{meanlog}{A numeric vector of the means on the log scale.}
 
-\item{sdlog}{A non-negative numeric vector of the standard deviations on the log scale.}
+\item{sdlog}{A non-negative numeric vector of the standard deviations on the
+log scale.}
 
-\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for deviance residuals and 'data' for the data.}
+\item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
+deviance residuals and 'data' for the data.}
 
 \item{simulate}{A flag specifying whether to simulate residuals.}
 }
@@ -24,20 +26,21 @@ An numeric vector of the corresponding residuals.
 Log-Normal Residuals
 }
 \examples{
-dev_norm(exp(c(-2:2)))
+res_lnorm(10)
 }
 \seealso{
 Other res_dist: 
 \code{\link{res_bern}()},
 \code{\link{res_beta_binom}()},
 \code{\link{res_binom}()},
-\code{\link{res_gamma_pois_zi}()},
-\code{\link{res_gamma_pois}()},
 \code{\link{res_gamma}()},
+\code{\link{res_gamma_pois}()},
+\code{\link{res_gamma_pois_zi}()},
 \code{\link{res_neg_binom}()},
 \code{\link{res_norm}()},
-\code{\link{res_pois_zi}()},
 \code{\link{res_pois}()},
+\code{\link{res_pois_zi}()},
+\code{\link{res_skewnorm}()},
 \code{\link{res_student}()}
 }
 \concept{res_dist}

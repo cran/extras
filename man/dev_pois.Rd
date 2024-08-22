@@ -11,7 +11,8 @@ dev_pois(x, lambda, res = FALSE)
 
 \item{lambda}{A non-negative numeric vector of means.}
 
-\item{res}{A flag specifying whether to return the deviance residual as opposed to the deviance.}
+\item{res}{A flag specifying whether to return the deviance residual as
+opposed to the deviance.}
 }
 \value{
 An numeric vector of the corresponding deviances or deviance residuals.
@@ -20,19 +21,20 @@ An numeric vector of the corresponding deviances or deviance residuals.
 Poisson Deviances
 }
 \examples{
-dev_pois(c(1,3.5,4), 3)
+dev_pois(c(1, 3, 4), 3)
 }
 \seealso{
 Other dev_dist: 
 \code{\link{dev_bern}()},
 \code{\link{dev_beta_binom}()},
 \code{\link{dev_binom}()},
-\code{\link{dev_gamma_pois}()},
 \code{\link{dev_gamma}()},
+\code{\link{dev_gamma_pois}()},
 \code{\link{dev_lnorm}()},
 \code{\link{dev_neg_binom}()},
 \code{\link{dev_norm}()},
 \code{\link{dev_pois_zi}()},
+\code{\link{dev_skewnorm}()},
 \code{\link{dev_student}()}
 }
 \concept{dev_dist}
