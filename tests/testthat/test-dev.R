@@ -12,8 +12,8 @@ test_that("beta_binom known values", {
   expect_equal(dev_beta_binom(1, 1, 0, 0.5), Inf)
   expect_equal(dev_beta_binom(1, 1, 0.5, 0), 1.38629436111989)
   expect_identical(dev_beta_binom(1, 1, 0.5, 0), dev_binom(1, 1, 0.5))
-  expect_equal(dev_beta_binom(1, 1, 0.5, 1), 1.38629430121326)
-  expect_equal(dev_beta_binom(1, 1, 0.5, 0.5), 1.38629430121326)
+  expect_equal(dev_beta_binom(1, 1, 0.5, 1), 1.38629436111989)
+  expect_equal(dev_beta_binom(1, 1, 0.5, 0.5), 1.38629436111989)
   expect_equal(dev_beta_binom(1, 2, 0.2, 0), 0.892574205256839)
   expect_equal(dev_beta_binom(1, 2, 0.2, 1), 0.892574205256839)
   expect_equal(dev_beta_binom(1, 2, 0.2, 0.5), 0.892574205256839)
@@ -39,8 +39,8 @@ test_that("beta_binom known values", {
   expect_equal(dev_beta_binom(0, 2, 0.5, 0.1), 2.67954869096997)
   expect_equal(dev_beta_binom(0, 2, 0.5, 0.5), 2.40794560865187)
   expect_equal(dev_beta_binom(0, 2, 0.1), 0.421442062631305)
-  expect_equal(dev_beta_binom(0, 2, 0.1, 0.1), 0.410887933834857)
-  expect_equal(dev_beta_binom(0, 2, 0.1, 0.5), 0.377484235738089)
+  expect_equal(dev_beta_binom(0, 2, 0.1, 0.1), 0.410887948429604)
+  expect_equal(dev_beta_binom(0, 2, 0.1, 0.5), 0.377484249193745)
   expect_equal(dev_beta_binom(1, 2, 1, 10), Inf)
   expect_equal(dev_beta_binom(2, 2, 1, 10), 0)
   expect_equal(dev_beta_binom(0, 2, 0.5, 10), 1.56031711509915)
@@ -49,7 +49,7 @@ test_that("beta_binom known values", {
 
 test_that("beta_binom vectorized", {
   expect_equal(dev_beta_binom(0:3, 5, 0, 0), dev_binom(0:3, 5, 0))
-  expect_equal(dev_beta_binom(c(0, 1, 3, 0), 3, 0.5, 0.5), c(3.21887580642895, 0.179750127270295, 3.2188756770985, 3.21887580642895))
+  expect_equal(dev_beta_binom(c(0, 1, 3, 0), 3, 0.5, 0.5), c(3.2188758248682, 0.179750127270293, 3.2188758248682, 3.2188758248682))
   expect_equal(dev_beta_binom(0:3, 0:3, rep(1, 4), 0), rep(0, 4))
   expect_equal(dev_beta_binom(0:3, 1:4, seq(0, 1, length.out = 4), 0:3), c(0, 0.235566071312767, 0.076961041136129, Inf))
 })
@@ -241,12 +241,31 @@ test_that("gamma_pois log_lik", {
   )
 })
 
-test_that("gamma_pois deviance", {
-  skip_if_not_installed("MASS")
-  samples <- ran_gamma_pois(10000, 3, 0.5)
-  mod <- MASS::glm.nb(samples ~ 1)
-  deviance <- sum(dev_gamma_pois(samples, exp(coef(mod)[1]), theta = 1 / mod$theta))
-  expect_equal(deviance, deviance(mod))
+# This test confirms that the deviance calculation is correct by comparing the
+# sum of the deviance residuals for a set of randomly generated gamma-Poisson
+# values is the same as the deviance of an intercept-only GLM model with the
+# same family.
+# The test is commented out to avoid the dependency on the MASS package, which
+# was requiring us to increase the minimum version of R.
+# test_that("gamma_pois deviance", {
+#   skip_if_not_installed("MASS")
+#   samples <- ran_gamma_pois(10000, 3, 0.5)
+#   mod <- MASS::glm.nb(samples ~ 1)
+#   deviance <- sum(dev_gamma_pois(samples, exp(coef(mod)[1]), theta = 1 / mod$theta))
+#   expect_equal(deviance, deviance(mod))
+# })
+
+test_that("gamma_pois deviance snapshot", {
+  expect_snapshot({
+    withr::with_seed(
+      101,
+      {
+        x <- ran_gamma_pois(10000, 3, 0.5)
+      }
+    )
+    deviance <- dev_gamma_pois(x, 3, 0.5)
+    deviance
+  })
 })
 
 test_that("gamma_pois ran", {

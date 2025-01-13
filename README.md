@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# extras <img src="man/figures/logo.png" align="right" />
+# extras <a href="https://poissonconsulting.github.io/extras/"><img src="man/figures/logo.png" align="right" height="138" alt="extras website" /></a>
 
 <!-- badges: start -->
 
@@ -9,7 +9,7 @@
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R-CMD-check](https://github.com/poissonconsulting/extras/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/poissonconsulting/extras/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/poissonconsulting/extras/branch/master/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/extras?branch=master)
+coverage](https://codecov.io/gh/poissonconsulting/extras/graph/badge.svg)](https://app.codecov.io/gh/poissonconsulting/extras)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/extras)](https://cran.r-project.org/package=extras)
 ![CRAN downloads](https://cranlogs.r-pkg.org/badges/extras)
@@ -22,18 +22,6 @@ Carlo Markov Chain) samples, draw random samples from various
 distributions and calculate deviance residuals as well as R translations
 of some BUGS (Bayesian Using Gibbs Sampling), JAGS (Just Another Gibbs
 Sampler), STAN and TMB (Template Model Builder) functions.
-
-## Installation
-
-<!-- To install the latest release from [CRAN](https://cran.r-project.org) -->
-
-To install the developmental version from
-[GitHub](https://github.com/poissonconsulting/extras)
-
-``` r
-# install.packages("remotes")
-remotes::install_github("poissonconsulting/extras")
-```
 
 ## Demonstration
 
@@ -68,6 +56,7 @@ Implemented distributions with functions to draw random samples,
 calculate log-likelihoods, and calculate deviance residuals for include:
 
 - Bernoulli
+- Binomial
 - Beta-binomial
 - Gamma
 - Gamma-Poisson
@@ -113,6 +102,44 @@ numericise(
 #>      logical factor  Date hms
 #> [1,]       1      1 10957   2
 #> [2,]       0      2 10958  61
+```
+
+## Installation
+
+## Information
+
+For more information see the [Get
+Started](https://poissonconsulting.github.io/chk/articles/chk.html)
+vignette.
+
+## Installation
+
+### Release
+
+To install the release version from
+[CRAN](https://CRAN.R-project.org/package=extras).
+
+``` r
+install.packages("extras")
+```
+
+The website for the release version is at
+<https://poissonconsulting.github.io/extras/>.
+
+### Development
+
+To install the development version from
+[GitHub](https://github.com/poissonconsulting/extras)
+
+``` r
+# install.packages("remotes")
+remotes::install_github("poissonconsulting/extras")
+```
+
+or from [r-universe](https://poissonconsulting.r-universe.dev/extras).
+
+``` r
+install.packages("extras", repos = c("https://poissonconsulting.r-universe.dev", "https://cloud.r-project.org"))
 ```
 
 ## References

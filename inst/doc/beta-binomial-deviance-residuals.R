@@ -6,13 +6,13 @@ knitr::opts_chunk$set(
 
 library(extras)
 
-## ----eval = requireNamespace("tidyr") & requireNamespace("ggplot2") & requireNamespace("viridis") & requireNamespace("scales"), include = FALSE----
+## ----eval = rlang::is_installed("tidyr") & rlang::is_installed("ggplot2") & rlang::is_installed("viridis") & rlang::is_installed("scales"), include = FALSE----
 library(tidyr)
 library(ggplot2)
 library(viridis)
 library(scales)
 
-## ----eval = requireNamespace("tidyr") & requireNamespace("ggplot2") & requireNamespace("viridis") & requireNamespace("scales"), echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 1: Beta-binomial likelihood profile for $x = 1$ and $n = 5$, for different values of $\\theta$. $\\theta = 0$ corresponds to the binomial case."----
+## ----eval = rlang::is_installed("tidyr") & rlang::is_installed("ggplot2") & rlang::is_installed("viridis") & rlang::is_installed("scales"), echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 1: Beta-binomial likelihood profile for $x = 1$ and $n = 5$, for different values of $\\theta$. $\\theta = 0$ corresponds to the binomial case."----
 n_samp <- 1000
 x <- 1
 size <- 5
@@ -41,7 +41,7 @@ ggplot(tb, aes(x = prob_seq, y = lik, colour = theta)) +
   xlab("p") +
   ylab("likelihood")
 
-## ----eval = requireNamespace("tidyr") & requireNamespace("ggplot2") & requireNamespace("viridis") & requireNamespace("scales"), echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 2: Beta-binomial likelihood profile for $x = 1$, $n = 5$, and $\\theta = 0.5$. The dashed vertical line shows the likelihood at the expected value of the beta-binomial distribution ($n \\cdot p$) where $p = \\frac{x}{n} = \\frac{1}{5} = 0.2$. As you can see, this is not the $p$ for which the likelihood is maximized. The solid vertical line shows the likelihood at its maximum point. In this case, $p^* = 0.26$."----
+## ----eval = rlang::is_installed("tidyr") & rlang::is_installed("ggplot2") & rlang::is_installed("viridis") & rlang::is_installed("scales"), echo = FALSE, fig.width = 7, fig.height = 4, fig.cap = "Fig. 2: Beta-binomial likelihood profile for $x = 1$, $n = 5$, and $\\theta = 0.5$. The dashed vertical line shows the likelihood at the expected value of the beta-binomial distribution ($n \\cdot p$) where $p = \\frac{x}{n} = \\frac{1}{5} = 0.2$. As you can see, this is not the $p$ for which the likelihood is maximized. The solid vertical line shows the likelihood at its maximum point. In this case, $p^* = 0.26$."----
 n_samp <- 1000
 x <- 1
 size <- 5
@@ -74,7 +74,7 @@ ggplot(lik, aes(x = prob_seq, y = lik)) +
   xlab("p") +
   ylab("likelihood")
 
-## ----eval = requireNamespace("tidyr") & requireNamespace("ggplot2") & requireNamespace("viridis") & requireNamespace("scales"), echo = FALSE, fig.height = 8, fig.width = 7, fig.cap = "Fig. 4: Histograms of deviance residuals for 10,000 beta-binomial data points simulated with $n = 50$, $p = \\{0.3, 0.5, 0.9 \\}$, and $\\theta = \\{0.0, 0.1, 0.5, 1.0 \\}$. The percentages within each panel (i.e., each combination of $p$ and $\\theta$) sum to 100%."----
+## ----eval = rlang::is_installed("tidyr") & rlang::is_installed("ggplot2") & rlang::is_installed("viridis") & rlang::is_installed("scales"), echo = FALSE, fig.height = 8, fig.width = 7, fig.cap = "Fig. 4: Histograms of deviance residuals for 10,000 beta-binomial data points simulated with $n = 50$, $p = \\{0.3, 0.5, 0.9 \\}$, and $\\theta = \\{0.0, 0.1, 0.5, 1.0 \\}$. The percentages within each panel (i.e., each combination of $p$ and $\\theta$) sum to 100%."----
 n_samp <- 10000
 size <- 50
 prob <- c(0.3, 0.5, 0.9)
