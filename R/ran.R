@@ -94,7 +94,8 @@ ran_gamma_pois <- function(n = 1, lambda = 1, theta = 0) {
 #' @examples
 #' ran_gamma_pois_zi(10, lambda = 3, theta = 1, prob = 0.5)
 ran_gamma_pois_zi <- function(n = 1, lambda = 1, theta = 0, prob = 0) {
-  ran_neg_binom(n = n, lambda = lambda, theta = theta) * ran_bern(n, prob = 1 - prob)
+  ran_neg_binom(n = n, lambda = lambda, theta = theta) *
+    ran_bern(n, prob = 1 - prob)
 }
 
 #' Log-Normal Random Samples
@@ -189,6 +190,25 @@ ran_skewnorm <- function(n = 1, mean = 0, sd = 1, shape = 0) {
   chk_whole_number(n)
   chk_gte(n)
   rskewnorm(n = n, mean = mean, sd = sd, shape = shape)
+}
+
+#' Skew-Lognormal Random Samples
+#'
+#' @inheritParams params
+#' @param shape A numeric vector of shape.
+#' @return A numeric vector of the random samples.
+#' @family ran_dist
+#' @export
+#'
+#' @examplesIf rlang::is_installed("sn")
+#' ran_skewlnorm(10, shape = -1)
+#' ran_skewlnorm(10, shape = 0)
+#' ran_skewlnorm(10, shape = 1)
+ran_skewlnorm <- function(n = 1, meanlog = 0, sdlog = 1, shape = 0) {
+  rlang::check_installed("sn")
+  chk_whole_number(n)
+  chk_gte(n)
+  rskewlnorm(n = n, meanlog = meanlog, sdlog = sdlog, shape = shape)
 }
 
 #' Student's t Random Samples

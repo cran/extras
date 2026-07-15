@@ -4,7 +4,7 @@
 \alias{log_lik_neg_binom}
 \title{Negative Binomial Log-Likelihood}
 \usage{
-log_lik_neg_binom(x, lambda = 1, theta = 0)
+log_lik_neg_binom(x, lambda = 1, theta = 0, tlower = 0, tupper = Inf)
 }
 \arguments{
 \item{x}{A non-negative whole numeric vector of values.}
@@ -13,6 +13,10 @@ log_lik_neg_binom(x, lambda = 1, theta = 0)
 
 \item{theta}{A non-negative numeric vector of the dispersion for the mixture
 models (student, gamma-Poisson and beta-binomial).}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 }
 \value{
 An numeric vector of the corresponding log-likelihoods.
@@ -24,18 +28,22 @@ Negative Binomial Log-Likelihood
 log_lik_neg_binom(c(0, 1, 2), 2, 1)
 }
 \seealso{
-Other log_lik_dist: 
-\code{\link{log_lik_bern}()},
-\code{\link{log_lik_beta_binom}()},
-\code{\link{log_lik_binom}()},
-\code{\link{log_lik_gamma}()},
-\code{\link{log_lik_gamma_pois}()},
-\code{\link{log_lik_gamma_pois_zi}()},
-\code{\link{log_lik_lnorm}()},
-\code{\link{log_lik_norm}()},
-\code{\link{log_lik_pois}()},
-\code{\link{log_lik_pois_zi}()},
-\code{\link{log_lik_skewnorm}()},
-\code{\link{log_lik_student}()}
+Other log_lik_dist:
+\code{\link[=log_lik_bern]{log_lik_bern()}},
+\code{\link[=log_lik_beta]{log_lik_beta()}},
+\code{\link[=log_lik_beta_binom]{log_lik_beta_binom()}},
+\code{\link[=log_lik_binom]{log_lik_binom()}},
+\code{\link[=log_lik_exp]{log_lik_exp()}},
+\code{\link[=log_lik_gamma]{log_lik_gamma()}},
+\code{\link[=log_lik_gamma_pois]{log_lik_gamma_pois()}},
+\code{\link[=log_lik_gamma_pois_zi]{log_lik_gamma_pois_zi()}},
+\code{\link[=log_lik_lnorm]{log_lik_lnorm()}},
+\code{\link[=log_lik_norm]{log_lik_norm()}},
+\code{\link[=log_lik_pois]{log_lik_pois()}},
+\code{\link[=log_lik_pois_zi]{log_lik_pois_zi()}},
+\code{\link[=log_lik_skewlnorm]{log_lik_skewlnorm()}},
+\code{\link[=log_lik_skewnorm]{log_lik_skewnorm()}},
+\code{\link[=log_lik_student]{log_lik_student()}},
+\code{\link[=log_lik_unif]{log_lik_unif()}}
 }
 \concept{log_lik_dist}

@@ -1,20 +1,26 @@
 <!-- NEWS.md is maintained by https://fledge.cynkra.com, contributors should not edit this file -->
 
+# extras 0.10.0
+
+- Add `probability_direction()` and `directional_information()` (#106).
+- Add functions to calculate s-values and information from vectors of probabilities: `p2svalue()` and `p2info()` (#122).
+- Add functions to calculate the Region of Practical Equivalence (ROPE) and credible intervals: `xtr_ci()`, `xtr_ci_eti()`, `xtr_ci_hdi()`, `xtr_rope()` (#110).
+- Add skew-lognormal distribution family (`dskewlnorm()`, `pskewlnorm()`, `qskewlnorm()`, `rskewlnorm()`, `ran_skewlnorm()`, `sens_skewlnorm()`, `quant_skewlnorm()`, `dev_skewlnorm()`, `res_skewlnorm()`, `log_lik_skewlnorm()`, `prob_skewlnorm()`) (#127).
+- Add `skeptical` argument to `pvalue()`, `svalue()`, and `directional_information()`, defaulting to `TRUE` (#133).
+- Advance deprecation of `as_list_unnamed()`, `pextreme()`, and `sextreme()` from soft-deprecated to warnings (#140).
+
+# extras 0.9.0
+
+- Add `log_lik_exp()`, `log_lik_beta()`, and `log_lik_unif()` (#93, #94, #95).
+- Allow one-sided p-values and s-values via the `side` argument of `pvalue()` and `svalue()`; tighten `pvalue()`'s sample-size correction to only apply when it would otherwise return exactly 0 (#100, #105).
+- Add truncation arguments (`tlower`, `tupper`) to `log_lik_*()` functions; add `prob_*()` and `quant_*()` function families (#119).
+
 # extras 0.8.0
 
 - Added a scalar case to `log_lik_beta_binom()` to improve speed for scalar inputs.
 - Add memoization (if memoize package is installed) and data has > 800 rows to gain speed from repeated function calls.
 - Use a vectorized optimization to improve speed of optimization required for deviance calculation.
-
-# extras 0.7.3.9002
-
 - Remove dependency on MASS package so minimum R version can be brought down to 4.0.0 from 4.3.0.
-
-# extras 0.7.3.9001
-
-- Register poissontemplate usage.
-- Fix actions.
-- Perform upkeep on package.
 
 # extras 0.7.3
 

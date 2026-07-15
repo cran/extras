@@ -2,47 +2,103 @@
 % Please edit documentation in R/svalue.R
 \name{svalue}
 \alias{svalue}
+\alias{p2svalue}
 \title{Surprisal Value}
 \usage{
-svalue(x, threshold = 0, na_rm = FALSE)
+svalue(x, ..., side = "both", threshold = 0, skeptical = TRUE, na_rm = FALSE)
+
+p2svalue(p)
 }
 \arguments{
 \item{x}{A numeric object of MCMC values.}
 
+\item{...}{Unused.}
+
+\item{side}{A character indicating whether to calculate s-values using
+p-values for the left tail (\code{"left"}), right tail (\code{"right"}), or both tails
+(\code{"both"}; default).}
+
 \item{threshold}{A number of the threshold value.}
 
+\item{skeptical}{A flag specifying whether or not to add one sample to the
+empty side of the threshold when 100\% of samples are on one side. Avoids
+zero p-values and infinite s-values, and also imposes stronger bounds on
+directional information than [-n, n], which assume the MCMC samples are
+independent and representative.}
+
 \item{na_rm}{A flag specifying whether to remove missing values.}
+
+\item{p}{A numeric vector of probabilities.}
 }
 \value{
 A non-negative number.
+If \code{x} has \code{NA} values but \code{na_rm} is \code{FALSE}, returns \code{NA_real}.
 }
 \description{
-The surprisal value (Greenland 2019) is the \link{pvalue} expressed in
-terms of how many consecutive heads would have to be thrown on a fair coin
-in a single attempt to achieve the same probability.
+The \href{https://www.poissonconsulting.ca/post/2026/what-are-s-values/}{surprisal value}
+(Greenland 2019) is a probability expressed in terms of how many consecutive
+heads would have to be thrown on a fair coin in a single attempt to achieve
+the same probability: \eqn{-\log_2(p)}, where \eqn{p} is the p-value of
+interest. See the details section for some examples.
 }
+\details{
+{
+A near-certain event has an s-value near 0 because it is similar to getting
+0 successful coin flips out of 0 tosses, which is certain and unsurprising.
+
+An event with a probability of 0.5 is as surprising as getting a successful
+coin toss.
+
+A near-impossible event has a very large s-value because its
+occurrence would be extremely surprising, like observing many consecutive
+successes on a fair coin.
+
+When \code{skeptical = TRUE} (default), a ceiling of \eqn{\log_2(n + 1)} is applied
+to the s-value to avoid s-values of \code{Inf} when all samples are on
+one side of the threshold. When \code{skeptical = FALSE}, s-values of \code{Inf} are
+allowed.
+}
+}
+\section{Functions}{
+\itemize{
+\item \code{svalue()}: Calculate an s-value from a posterior distribution.
+
+\item \code{p2svalue()}: Calculate an s-value from a vector of probabilities.
+
+}}
 \examples{
 svalue(as.numeric(0:100))
+svalue(as.numeric(0:100), side = "left")
+svalue(as.numeric(0:100), side = "right")
+svalue(rnorm(1e4, mean = 1), side = "left")
+svalue(rnorm(1e4, mean = 1), side = "right")
+svalue(rep(1, 10)) # skeptical = TRUE (default) avoids Inf
+svalue(rep(1, 10), skeptical = FALSE) # skeptical = FALSE allows Inf
+
+p2svalue(seq(0, 1, by = 0.1))
 }
 \references{
-Greenland, S. 2019. Valid P -Values Behave Exactly as They Should:
-Some Misleading Criticisms of P -Values and Their Resolution With S -Values.
+Greenland, S. 2019. Valid P-Values Behave Exactly as They Should:
+Some Misleading Criticisms of P-Values and Their Resolution With S-Values.
 The American Statistician 73(sup1): 106–114.
 \doi{10.1080/00031305.2018.1529625}.
 }
 \seealso{
-Other summary: 
-\code{\link{kurtosis}()},
-\code{\link{lower}()},
-\code{\link{pvalue}()},
-\code{\link{pzeros}()},
-\code{\link{skewness}()},
-\code{\link{upper}()},
-\code{\link{variance}()},
-\code{\link{xtr_mean}()},
-\code{\link{xtr_median}()},
-\code{\link{xtr_sd}()},
-\code{\link{zeros}()},
-\code{\link{zscore}()}
+Other summary:
+\code{\link[=direction]{direction()}},
+\code{\link[=directional_information]{directional_information()}},
+\code{\link[=kurtosis]{kurtosis()}},
+\code{\link[=lower]{lower()}},
+\code{\link[=probability_direction]{probability_direction()}},
+\code{\link[=pvalue]{pvalue()}},
+\code{\link[=pzeros]{pzeros()}},
+\code{\link[=skewness]{skewness()}},
+\code{\link[=upper]{upper()}},
+\code{\link[=variance]{variance()}},
+\code{\link[=xtr_mean]{xtr_mean()}},
+\code{\link[=xtr_median]{xtr_median()}},
+\code{\link[=xtr_sd]{xtr_sd()}},
+\code{\link[=zeros]{zeros()}},
+\code{\link[=zscore]{zscore()}}
 }
 \concept{summary}

@@ -9,9 +9,9 @@
 \arguments{
 \item{...}{Other arguments passed to methods.}
 
-\item{alpha}{The first shape parameter of the Beta distribution.}
+\item{alpha}{The first shape parameter of the beta distribution.}
 
-\item{beta}{The second shape parameter of the Beta distribution.}
+\item{beta}{The second shape parameter of the beta distribution.}
 
 \item{conf_level}{A numeric scalar between 0 and 1 specifying the confidence
 level.}
@@ -21,14 +21,21 @@ should be returned as negative values.}
 
 \item{lambda}{A non-negative numeric vector of means.}
 
+\item{level}{A number > 0 and <= 1 specifying the probability coverage of the
+interval.}
+
 \item{log}{A flag specifying whether to return the log-transformed value.}
 
 \item{lower.tail}{A flag specifying whether to return the lower or upper tail
 of the distribution.}
 
+\item{min}{A numeric vector of the minimums.}
+
 \item{mean}{A numeric vector of the means.}
 
 \item{meanlog}{A numeric vector of the means on the log scale.}
+
+\item{max}{A numeric vector of the maximums.}
 
 \item{n}{A non-negative whole number of the number of random samples to
 generate.}
@@ -37,7 +44,7 @@ generate.}
 
 \item{nas}{A flag specifying whether to also fill missing values.}
 
-\item{p}{A vector of probabilities.}
+\item{p}{A numeric vector of probabilities.}
 
 \item{prob}{A numeric vector of values between 0 and 1 of the probability of
 success.}
@@ -48,6 +55,8 @@ success.}
 
 \item{res}{A flag specifying whether to return the deviance residual as
 opposed to the deviance.}
+
+\item{scale}{A non-negative numeric vector of the scale.}
 
 \item{sd}{A non-negative numeric vector of the standard deviations.}
 
@@ -63,10 +72,20 @@ log scale.}
 
 \item{size}{A non-negative whole numeric vector of the number of trials.}
 
+\item{skeptical}{A flag specifying whether or not to add one sample to the
+empty side of the threshold when 100\% of samples are on one side. Avoids
+zero p-values and infinite s-values, and also imposes stronger bounds on
+directional information than [-n, n], which assume the MCMC samples are
+independent and representative.}
+
 \item{theta}{A non-negative numeric vector of the dispersion for the mixture
 models (student, gamma-Poisson and beta-binomial).}
 
 \item{threshold}{A number of the threshold value.}
+
+\item{tlower}{A numeric vector of the lower truncation point.}
+
+\item{tupper}{A numeric vector of the upper truncation point.}
 
 \item{type}{A string of the residual type. 'raw' for raw residuals 'dev' for
 deviance residuals and 'data' for the data.}
